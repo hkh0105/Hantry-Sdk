@@ -1,5 +1,5 @@
 {
-  "name": "hantry-core",
+  "name": "Hantry-core",
   "version": "0.1.0",
   "description": "Core for Hantry",
   "author": "hkh9601 <hkh9601@gmail.com>",
@@ -26,5 +26,5 @@
   "dependencies": {
     "utils": "^0.0.1"
   },
-  "gitHead": "f042904d298376b9c2bdcc0a9e2fd8a16471fd24"
+  "gitHead": "83725f7d840c5884ee29ec7e5fb8a379940d1541"
 }

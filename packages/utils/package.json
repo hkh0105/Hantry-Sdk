@@ -1,6 +1,6 @@
 {
-  "name": "hantry-utils",
-  "version": "0.1.0",
+  "name": "Hantry-utils",
+  "version": "0.0.0",
   "description": "Utils for Hantry",
   "author": "hkh9601 <hkh9601@gmail.com>",
   "homepage": "https://github.com/hkh0105/Hantry-Sdk#readme",
@@ -27,5 +27,5 @@
     "error-stack-parser": "^2.1.4",
     "ua-parser-js": "^1.0.2"
   },
-  "gitHead": "f042904d298376b9c2bdcc0a9e2fd8a16471fd24"
+  "gitHead": "83725f7d840c5884ee29ec7e5fb8a379940d1541"
 }
