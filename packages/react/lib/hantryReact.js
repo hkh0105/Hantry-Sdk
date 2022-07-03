@@ -10,23 +10,8 @@ export class HantryReact extends Hantry {
 
   captureUncaughtException() {
     window.onerror = async (message, source, lineno, colno, error) => {
-      console.log(
-        "message:",
-        message,
-        "src:",
-        source,
-        "lii:",
-        lineno,
-        "co:",
-        colno,
-        "err:",
-        error,
-      );
       const stack = getErrorStack(error);
-      console.log("stack:", stack);
-      console.log("windowuser", window.navigator.userAgent);
       const user = getUserInfo(window.navigator.userAgent);
-      console.log("user:", user);
       const newError = {
         type: error.name,
         message,
@@ -43,7 +28,6 @@ export class HantryReact extends Hantry {
 
   onUnhandledRejection() {
     window.onunhandledrejection = async event => {
-      console.log("event", event, "event re", event.reason);
       const stack = getErrorStack(event.reason);
       const user = getUserInfo(window.navigator.userAgent);
       const newError = {
@@ -52,7 +36,7 @@ export class HantryReact extends Hantry {
         stack,
         user,
       };
-      console.log(newError, this.dsn);
+
       return await super.createError(newError, this.dsn);
     };
   }

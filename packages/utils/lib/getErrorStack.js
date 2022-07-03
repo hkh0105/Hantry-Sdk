@@ -2,7 +2,6 @@ import ErrorStackParser from "error-stack-parser";
 
 export function getErrorStack(error) {
   const parsedError = ErrorStackParser.parse(error);
-  console.log("parse error:", parsedError);
   let stack = "";
 
   if (parsedError) {
