@@ -1,5 +1,7 @@
-import { captureUncaughtException, onUnhandledRejection } from "./captureError";
+import { HantryReact } from "./hantryReact";
+
 export const init = (dsn, options) => {
-  captureUncaughtException(dsn);
-  onUnhandledRejection(dsn);
+  const hantryReact = new HantryReact(dsn, options);
+  hantryReact.captureUncaughtException();
+  hantryReact.onUnhandledRejection();
 };
