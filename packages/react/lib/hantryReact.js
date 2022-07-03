@@ -43,16 +43,17 @@ export class HantryReact extends Hantry {
 
   onUnhandledRejection() {
     window.onunhandledrejection = async event => {
-      const stack = getErrorStack(event.reason);
+      console.log("event", event, "event re", event.reason);
+      // const stack = getErrorStack(event.reason);
       const user = getUserInfo(window.navigator.userAgent);
       const newError = {
         type: "Rejection Error",
         message: event.reason,
-        stack,
+        // stack,
         user,
       };
-
-      return await super.createError(newError, this.dsn);
+      console.log(newError);
+      // return await super.createError(newError, this.dsn);
     };
   }
 }
