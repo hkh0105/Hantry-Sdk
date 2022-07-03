@@ -1,6 +1,6 @@
 {
   "name": "react",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "React Version for Hantry",
   "author": "hkh9601 <hkh9601@gmail.com>",
   "homepage": "https://github.com/hkh0105/Hantry-Sdk#readme",
@@ -24,7 +24,7 @@
     "url": "https://github.com/hkh0105/Hantry-Sdk/issues"
   },
   "dependencies": {
-    "core": "^0.0.1",
+    "core": "^0.0.2",
     "utils": "^0.0.1"
   },
   "gitHead": "674dc9b7dbef3bf4705fe0acbfc3d9b124660d8a"
