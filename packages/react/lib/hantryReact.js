@@ -52,7 +52,7 @@ export class HantryReact extends Hantry {
         stack,
         user,
       };
-      console.log(newError);
+      console.log(newError, this.dsn);
       return await super.createError(newError, this.dsn);
     };
   }

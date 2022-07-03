@@ -12,8 +12,8 @@ export class Hantry {
   captureMessage(message) {
     return console.log(message);
   }
-  async createError(error) {
+  async createError(error, dsn) {
     console.log("asdasdasdasdasdasdasdasdasdasd", error, dsn);
-    return await sendError(error, this.dsn);
+    return await sendError(error, dsn);
   }
 }
