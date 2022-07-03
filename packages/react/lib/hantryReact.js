@@ -9,6 +9,7 @@ export class HantryReact extends Hantry {
 
   captureUncaughtException() {
     window.onerror = async (message, source, lineno, colno, error) => {
+      console.log(message, source, lineno, colno, error);
       const stack = getErrorStack(error);
       const user = getUserInfo(window.navigator.userAgent);
       const newError = {
