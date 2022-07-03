@@ -4,6 +4,7 @@ import { getErrorStack } from "hantry-js-utils";
 
 export class HantryReact extends Hantry {
   constructor(dsn, options) {
+    super(dsn, options);
     this.platform = "react";
   }
 
@@ -22,7 +23,7 @@ export class HantryReact extends Hantry {
         user,
       };
 
-      return await this.createError(newError, this.dsn);
+      return await super.createError(newError, this.dsn);
     };
   }
 
@@ -37,7 +38,7 @@ export class HantryReact extends Hantry {
         user,
       };
 
-      return await this.createError(newError, this.dsn);
+      return await super.createError(newError, this.dsn);
     };
   }
 }
