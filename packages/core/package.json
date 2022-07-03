@@ -22,5 +22,8 @@
   },
   "bugs": {
     "url": "https://github.com/hkh0105/Hantry-Sdk/issues"
+  },
+  "dependencies": {
+    "utils": "^0.0.0"
   }
 }
