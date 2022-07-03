@@ -2,5 +2,9 @@
   "dependencies": {
     "error-stack-parser": "^2.1.4",
     "ua-parser-js": "^1.0.2"
+  },
+  "name": "Hantry",
+  "devDependencies": {
+    "lerna": "^5.1.6"
   }
 }
