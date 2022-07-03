@@ -24,7 +24,7 @@
     "url": "https://github.com/hkh0105/Hantry-Sdk/issues"
   },
   "dependencies": {
-    "utils": "^0.0.1"
+    "hantry-js-utils": "^0.1.3"
   },
   "gitHead": "0303e2cb35115ea94c9ea9fab8afa679b979405a"
 }
