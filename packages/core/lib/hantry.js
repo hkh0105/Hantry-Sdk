@@ -13,6 +13,7 @@ export class Hantry {
     return console.log(message);
   }
   async createError(error) {
+    console.log("asdasdasdasdasdasdasdasdasdasd", error, dsn);
     return await sendError(error, this.dsn);
   }
 }
