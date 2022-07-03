@@ -1,9 +1,10 @@
 {
   "dependencies": {
+    "axios": "^0.27.2",
     "error-stack-parser": "^2.1.4",
     "ua-parser-js": "^1.0.2"
   },
-  "name": "Hantry",
+  "name": "Hantry-Vanilla",
   "devDependencies": {
     "lerna": "^5.1.6"
   }

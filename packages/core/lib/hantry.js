@@ -1,4 +1,4 @@
-import { sendError } from "../../utils/src/sendError";
+import { sendError } from "hantry-js-utils";
 
 export class Hantry {
   constructor(dsn, options) {
@@ -12,7 +12,7 @@ export class Hantry {
   captureMessage(message) {
     return console.log(message);
   }
-  async createError(error) {
-    return await sendError(error, this.dsn);
+  async createError(error, dsn) {
+    return await sendError(error, dsn);
   }
 }

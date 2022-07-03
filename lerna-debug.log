@@ -1,0 +1,6 @@
+48 error Error: Command failed with exit code 128: git tag v0.0.1 -m v0.0.1
+48 error fatal: 태그 'v0.0.1'이(가) 이미 있습니다
+48 error     at makeError (/usr/local/lib/node_modules/lerna/node_modules/execa/lib/error.js:60:11)
+48 error     at handlePromise (/usr/local/lib/node_modules/lerna/node_modules/execa/index.js:118:26)
+48 error     at processTicksAndRejections (node:internal/process/task_queues:96:5)
+48 error     at async Promise.all (index 0)

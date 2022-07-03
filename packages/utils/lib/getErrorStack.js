@@ -2,6 +2,7 @@ import ErrorStackParser from "error-stack-parser";
 
 export function getErrorStack(error) {
   const parsedError = ErrorStackParser.parse(error);
+  let stack = "";
 
   if (parsedError) {
     const stack = parsedError.map(stack => {
@@ -22,7 +23,7 @@ export function getErrorStack(error) {
         };
       }
     });
-  }
 
-  return stack;
+    return stack;
+  }
 }

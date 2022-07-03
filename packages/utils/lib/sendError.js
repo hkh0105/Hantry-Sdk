@@ -1,11 +1,14 @@
-export async function sendError(dns, error) {
-  const API = "http://localhost:8000/users/";
+import axios from "axios";
 
-  return await fetch(`${API}/project/${dns}/error`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: error,
-  });
+export async function sendError(error, dsn) {
+  const API = "http://localhost:8000/users";
+
+  try {
+    const postErrorResoponse = await axios.post(
+      `${API}/project/${dsn}/error`,
+      error,
+    );
+  } catch (err) {
+    console.log(err);
+  }
 }
