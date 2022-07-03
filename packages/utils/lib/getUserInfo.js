@@ -11,6 +11,7 @@ export function getUserInfo(user) {
     cpu: newUser.getCPU(),
     url: newUser.getUA(),
   };
-
+  console.log("newUser:", newUser);
+  console.log("User:", userAgent);
   return userAgent;
 }
