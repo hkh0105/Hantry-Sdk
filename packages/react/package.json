@@ -1,5 +1,5 @@
 {
-  "name": "Hantry-react",
+  "name": "hantry-js-react",
   "version": "0.1.1",
   "description": "React Version for Hantry",
   "author": "hkh9601 <hkh9601@gmail.com>",
@@ -27,5 +27,5 @@
     "core": "^0.0.1",
     "utils": "^0.0.1"
   },
-  "gitHead": "674dc9b7dbef3bf4705fe0acbfc3d9b124660d8a"
+  "gitHead": "0303e2cb35115ea94c9ea9fab8afa679b979405a"
 }
