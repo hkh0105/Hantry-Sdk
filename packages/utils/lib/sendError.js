@@ -4,12 +4,10 @@ export async function sendError(error, dsn) {
   const API = "http://localhost:8000/users";
 
   try {
-    const postErrorResoponse = await axios.post(`${API}/project/${dsn}/error`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: error,
-    });
+    const postErrorResoponse = await axios.post(
+      `${API}/project/${dsn}/error`,
+      error,
+    );
 
     console.log(postErrorResoponse);
   } catch (err) {
