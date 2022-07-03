@@ -9,7 +9,7 @@ export function getUserInfo(user) {
     engine: newUser.getEngine().name,
     device: newUser.getDevice().name,
     cpu: newUser.getCPU(),
-    url: newUser.getUA(),
+    ua: newUser.getUA(),
   };
   console.log("newUser:", newUser);
   console.log("User:", userAgent);

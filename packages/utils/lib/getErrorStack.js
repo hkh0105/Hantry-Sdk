@@ -16,7 +16,12 @@ export function getErrorStack(error) {
           colno: stack.columnNumber,
         };
       } catch (err) {
-        console.log("err:", err);
+        return {
+          file: stack.file,
+          function: stack.functionName,
+          lineno: stack.lineNumber,
+          colno: stack.columnNumber,
+        };
       }
     });
 
