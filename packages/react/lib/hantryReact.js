@@ -1,6 +1,6 @@
-import { Hantry } from "../../../packages/core/lib/hantry";
-import { getUserInfo } from "../../../packages/utils/lib/getUserInfo";
-import { getErrorStack } from "../../../packages/utils/lib/getErrorStack";
+import { Hantry } from "hantry-js-core";
+import { getUserInfo } from "hantry-js-utils";
+import { getErrorStack } from "hantry-js-utils";
 
 export class HantryReact extends Hantry {
   constructor(dsn, options) {

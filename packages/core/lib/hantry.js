@@ -1,4 +1,4 @@
-import { sendError } from "../../utils/src/sendError";
+import { sendError } from "hantry-js-utils";
 
 export class Hantry {
   constructor(dsn, options) {
