@@ -8,8 +8,6 @@ export async function sendError(error, dsn) {
       `${API}/project/${dsn}/error`,
       error,
     );
-
-    console.log(postErrorResoponse);
   } catch (err) {
     console.log(err);
   }
