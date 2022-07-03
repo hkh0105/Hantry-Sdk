@@ -25,7 +25,8 @@
   },
   "dependencies": {
     "error-stack-parser": "^2.1.4",
-    "ua-parser-js": "^1.0.2"
+    "ua-parser-js": "^1.0.2",
+    "axios": "^0.27.2"
   },
   "gitHead": "27fad91cec617a8fcd1ed7545a82539496e6f34a"
 }
