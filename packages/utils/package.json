@@ -1,6 +1,6 @@
 {
   "name": "hantry-js-utils",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "description": "Utils for Hantry",
   "author": "hkh9601 <hkh9601@gmail.com>",
   "homepage": "https://github.com/hkh0105/Hantry-Sdk#readme",
@@ -24,9 +24,9 @@
     "url": "https://github.com/hkh0105/Hantry-Sdk/issues"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "error-stack-parser": "^2.1.4",
-    "ua-parser-js": "^1.0.2",
-    "axios": "^0.27.2"
+    "ua-parser-js": "^1.0.2"
   },
   "gitHead": "27fad91cec617a8fcd1ed7545a82539496e6f34a"
 }
