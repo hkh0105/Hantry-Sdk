@@ -1,6 +1,6 @@
 import { Hantry } from "hantry-js-core";
-import { getUserInfo } from "hantry-js-utils";
-import { getErrorStack } from "hantry-js-utils";
+import { getUserInfo, getErrorStack, debounce } from "hantry-js-utils";
+import { debounce } from "packages/utils/lib/debounce";
 
 export class HantryReact extends Hantry {
   constructor(dsn, options) {
@@ -10,10 +10,13 @@ export class HantryReact extends Hantry {
   }
 
   captureClickEvent() {
-    window.addEventListener("click", event => {
-      event.preventDefault();
-      this.breadcrumbs.push(event.target.innerHTML);
-    });
+    window.addEventListener(
+      "click",
+      debounce(event => {
+        event.preventDefault();
+        this.breadcrumbs.push(event.target);
+      }, 100),
+    );
   }
 
   captureUriChange() {
@@ -41,13 +44,16 @@ export class HantryReact extends Hantry {
       window.dispatchEvent(new Event("locationchange"));
     });
 
-    window.addEventListener("locationchange", () => {
-      this.breadcrumbs.push(window.location.href);
-    });
+    window.addEventListener(
+      "locationchange",
+      debounce(() => {
+        this.breadcrumbs.push(window.location.href);
+      }, 100),
+    );
   }
 
   captureUncaughtException() {
-    window.onerror = async (message, source, lineno, colno, error) => {
+    window.onerror = debounce(async (message, source, lineno, colno, error) => {
       const stack = getErrorStack(error);
       const user = getUserInfo(window.navigator.userAgent);
       const newError = {
@@ -63,7 +69,7 @@ export class HantryReact extends Hantry {
 
       this.breadcrumbs = [];
       return await super.createError(newError, this.dsn);
-    };
+    }, 100);
   }
 
   onUnhandledRejection() {
