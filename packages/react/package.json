@@ -1,6 +1,6 @@
 {
   "name": "hantry-js-react",
-  "version": "0.1.16",
+  "version": "0.1.20",
   "description": "React Version for Hantry",
   "author": "hkh9601 <hkh9601@gmail.com>",
   "homepage": "https://github.com/hkh0105/Hantry-Sdk#readme",
@@ -24,8 +24,8 @@
     "url": "https://github.com/hkh0105/Hantry-Sdk/issues"
   },
   "dependencies": {
-    "hantry-js-core": "^0.1.16",
-    "hantry-js-utils": "^0.1.16"
+    "hantry-js-core": "^0.1.19",
+    "hantry-js-utils": "^0.1.19"
   },
   "gitHead": "27fad91cec617a8fcd1ed7545a82539496e6f34a"
 }
