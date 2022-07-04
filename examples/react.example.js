@@ -1,4 +1,4 @@
-import { init } from "../package/react/src/sdk";
+import { init } from "../packages/react/lib/sdk";
 
 init("1234", {});
 const testUnhandledRejection = () => {
