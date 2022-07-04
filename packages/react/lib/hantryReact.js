@@ -1,6 +1,5 @@
 import { Hantry } from "hantry-js-core";
 import { getUserInfo, getErrorStack, debounce } from "hantry-js-utils";
-import { debounce } from "packages/utils/lib/debounce";
 
 export class HantryReact extends Hantry {
   constructor(dsn, options) {
