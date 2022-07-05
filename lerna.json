@@ -3,14 +3,13 @@
     "packages/*"
   ],
   "useNx": false,
-  "version": "0.1.20",
+  "version": "0.1.26",
   "npmClient": "npm",
   "publish": {
     "ignoreChanges": [
       "ignored-file",
       "*.md"
-    ],
-    "message": "release publish"
+    ]
   },
   "bootstrap": {
     "npmClientArgs": [

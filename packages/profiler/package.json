@@ -1,11 +1,11 @@
 {
-  "name": "hantry-js-react",
-  "version": "0.1.25",
-  "description": "React Version for Hantry",
+  "name": "hantry-js-profiler",
+  "version": "0.1.26",
+  "description": "> TODO: description",
   "author": "hkh9601 <hkh9601@gmail.com>",
   "homepage": "https://github.com/hkh0105/Hantry-Sdk#readme",
   "license": "ISC",
-  "main": "lib/react.js",
+  "main": "lib/profiler.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -22,10 +22,5 @@
   },
   "bugs": {
     "url": "https://github.com/hkh0105/Hantry-Sdk/issues"
-  },
-  "dependencies": {
-    "hantry-js-core": "^0.1.21",
-    "hantry-js-utils": "^0.1.21"
-  },
-  "gitHead": "27fad91cec617a8fcd1ed7545a82539496e6f34a"
+  }
 }
