@@ -1,4 +1,4 @@
-import { HantryReact } from "./hantryReact";
+import { HantryReact } from "./hantryProfiler";
 
 export const init = (dsn, options) => {
   const hantryReact = new HantryReact(dsn, options);
