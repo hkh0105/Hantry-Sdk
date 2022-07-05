@@ -17,7 +17,6 @@ export class Profiler {
       });
     });
 
-    console.log("start observe");
     observer.observe({
       entryTypes: [
         "first-input",
