@@ -71,7 +71,7 @@ export class HantryReact extends Hantry {
     }, 100);
   }
 
-  onUnhandledRejection() {
+  captureRejectionException() {
     window.onunhandledrejection = async event => {
       const stack = getErrorStack(event.reason);
       const user = getUserInfo(window.navigator.userAgent);
@@ -86,5 +86,44 @@ export class HantryReact extends Hantry {
       this.breadcrumbs = [];
       return await super.createError(newError, this.dsn);
     };
+  }
+
+  observerStart() {
+    const observer = new PerformanceObserver((list, obj) => {
+      list.getEntries().forEach(async entry => {
+        const parsedEntry = parseEntryType(entry);
+
+        await sendPerformance(entry.entryType, parsedEntry, this.dsn);
+      });
+    });
+
+    observer.observe({
+      entryTypes: [
+        "first-input",
+        "largest-contentful-paint",
+        "layout-shift",
+        "longtask",
+        "mark",
+        "measure",
+        "navigation",
+        "paint",
+      ],
+    });
+  }
+
+  async sendPerformance(entryType, parsedEntry, dsn) {
+    const API = "http://localhost:8000/users";
+
+    try {
+      const postPerformanceResoponse = await axios.post(
+        `${API}/project/${dsn}/performance`,
+        {
+          parsedEntry,
+          entryType,
+        },
+      );
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
