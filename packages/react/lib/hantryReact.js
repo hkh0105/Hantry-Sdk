@@ -1,5 +1,6 @@
 import { Hantry } from "hantry-js-core";
 import { getUserInfo, getErrorStack, debounce } from "hantry-js-utils";
+import axios from "axios";
 
 export class HantryReact extends Hantry {
   constructor(dsn, options) {
@@ -47,7 +48,7 @@ export class HantryReact extends Hantry {
       "locationchange",
       debounce(() => {
         this.breadcrumbs.push(window.location.href);
-      }, 100),
+      }, 1000),
     );
   }
 
@@ -67,8 +68,8 @@ export class HantryReact extends Hantry {
       };
 
       this.breadcrumbs = [];
-      return await super.createError(newError, this.dsn);
-    }, 100);
+      return await this.sendError(newError, this.dsn);
+    }, 1000);
   }
 
   captureRejectionException() {
@@ -84,7 +85,7 @@ export class HantryReact extends Hantry {
       };
 
       this.breadcrumbs = [];
-      return await super.createError(newError, this.dsn);
+      return await this.sendError(newError, this.dsn);
     };
   }
 

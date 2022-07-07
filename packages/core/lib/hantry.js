@@ -9,10 +9,21 @@ export class Hantry {
   captureError(error) {
     return console.log(error);
   }
+
   captureMessage(message) {
     return console.log(message);
   }
-  async createError(error, dsn) {
-    return await sendError(error, dsn);
+
+  async sendError(error, dsn) {
+    const API = "http://localhost:8000/users";
+
+    try {
+      const postErrorResoponse = await axios.post(
+        `${API}/project/${dsn}/error`,
+        { error: error },
+      );
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
