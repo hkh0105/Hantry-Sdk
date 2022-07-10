@@ -6,7 +6,8 @@ export class HantryReact extends Hantry {
   constructor(dsn, options) {
     super(dsn, options);
     this.platform = "react";
-    this.breadcrumbs = [];
+    this.breadcrumbsClick = [];
+    this.breadcrumbsURL = [];
   }
 
   captureClickEvent() {
@@ -66,7 +67,9 @@ export class HantryReact extends Hantry {
         },
         stack,
         user,
-        breadcrumbs: this.breadcrumbs,
+        breadcrumbsClick: this.breadcrumbsClick,
+        breadcrumbsURL: this.breadcrumbsURL,
+        createdAt: Date.now(),
       };
 
       this.breadcrumbs = [];
