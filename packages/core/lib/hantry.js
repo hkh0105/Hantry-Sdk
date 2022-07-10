@@ -1,5 +1,3 @@
-import { sendError } from "hantry-js-utils";
-
 export class Hantry {
   constructor(dsn, options) {
     this.dsn = dsn;
@@ -22,6 +20,7 @@ export class Hantry {
         `${API}/project/${dsn}/error`,
         error,
       );
+      console.log(postErrorResoponse);
     } catch (err) {
       console.log(err);
     }
