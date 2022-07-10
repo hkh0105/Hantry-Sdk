@@ -15,7 +15,7 @@ export class HantryReact extends Hantry {
       "click",
       debounce(event => {
         event.preventDefault();
-        this.breadcrumbsClick.push(event.target);
+        this.breadcrumbsClick.push(JSON.stringify(event.target));
       }, 100),
     );
   }
