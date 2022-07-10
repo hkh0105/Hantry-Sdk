@@ -15,7 +15,7 @@ export class HantryReact extends Hantry {
       "click",
       debounce(event => {
         event.preventDefault();
-        this.breadcrumbs.push(event.target);
+        this.breadcrumbsClick.push(event.target);
       }, 100),
     );
   }
@@ -48,7 +48,7 @@ export class HantryReact extends Hantry {
     window.addEventListener(
       "locationchange",
       debounce(() => {
-        this.breadcrumbs.push(window.location.href);
+        this.breadcrumbsURL.push(window.location.href);
       }, 1000),
     );
   }
@@ -84,9 +84,8 @@ export class HantryReact extends Hantry {
       const newError = {
         type: "Rejection Error",
         message: event.reason,
-        stack,
-        user,
-        breadcrumbs: this.breadcrumbs,
+        breadcrumbsClick: this.breadcrumbsClick,
+        breadcrumbsURL: this.breadcrumbsURL,
       };
 
       this.breadcrumbs = [];
