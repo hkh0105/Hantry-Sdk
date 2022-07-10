@@ -60,8 +60,10 @@ export class HantryReact extends Hantry {
         type: error.name,
         message,
         source,
-        lineno,
-        colno,
+        location: {
+          lineno: lineno,
+          colno: colno,
+        },
         stack,
         user,
         breadcrumbs: this.breadcrumbs,

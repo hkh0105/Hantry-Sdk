@@ -20,7 +20,7 @@ export class Hantry {
     try {
       const postErrorResoponse = await axios.post(
         `${API}/project/${dsn}/error`,
-        { error: error },
+        error,
       );
     } catch (err) {
       console.log(err);
