@@ -64,6 +64,7 @@ export function parseEntryType(entry) {
   }
 
   if (entry.entryType === "first-input") {
+    console.log(entry);
     const firstInput = {};
     firstInput.name = entry.name;
     firstInput.delay = entry.processingStart - entry.startTime;

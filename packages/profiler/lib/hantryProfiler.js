@@ -10,7 +10,7 @@ export class Profiler {
   observerStart() {
     const observer = new PerformanceObserver((list, obj) => {
       list.getEntries().forEach(async entry => {
-        console.log("parse");
+        console.log(entry);
         const parsedEntry = parseEntryType(entry);
         console.log(parsedEntry);
         this.sendPerformance(entry.entryType, parsedEntry, this.dsn);
