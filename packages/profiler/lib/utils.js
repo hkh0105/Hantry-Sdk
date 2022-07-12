@@ -62,4 +62,14 @@ export function parseEntryType(entry) {
 
     return layoutShift;
   }
+
+  if (entry.entryType === "first-input") {
+    const firstInput = {};
+    firstInput.name = entry.name;
+    firstInput.delay = entry.processingStart - entry.startTime;
+    firstInput.target = entry.target ? entry.target.id : "unknown-target";
+    firstInput.duration = entry.duration;
+
+    return firstInput;
+  }
 }
