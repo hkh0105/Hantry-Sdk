@@ -13,7 +13,7 @@ export class Profiler {
         console.log("parse");
         const parsedEntry = parseEntryType(entry);
         console.log(parsedEntry);
-        await sendPerformance(entry.entryType, parsedEntry, this.dsn);
+        this.sendPerformance(entry.entryType, parsedEntry, this.dsn);
       });
     });
 
