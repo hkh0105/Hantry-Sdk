@@ -72,7 +72,8 @@ export class HantryReact extends Hantry {
         createdAt: Date.now(),
       };
 
-      this.breadcrumbs = [];
+      this.breadcrumbsClick = [];
+      this.breadcrumbsURL = [];
       return await this.sendError(newError, this.dsn);
     }, 1000);
   }
@@ -84,11 +85,21 @@ export class HantryReact extends Hantry {
       const newError = {
         type: "Rejection Error",
         message: event.reason,
+        source: "",
+        location: {
+          lineno: 1,
+          colno: 1,
+        },
+        stack: [],
+        user,
         breadcrumbsClick: this.breadcrumbsClick,
         breadcrumbsURL: this.breadcrumbsURL,
+        createdAt: Date.now(),
       };
 
-      this.breadcrumbs = [];
+      this.breadcrumbsClick = [];
+      this.breadcrumbsURL = [];
+
       return await this.sendError(newError, this.dsn);
     };
   }
