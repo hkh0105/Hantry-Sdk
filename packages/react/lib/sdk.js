@@ -3,7 +3,6 @@ import { HantryReact } from "./hantryReact";
 export const init = (dsn, options) => {
   const hantryReact = new HantryReact(dsn, options);
   hantryReact.captureUncaughtException();
-  hantryReact.captureRejectionException();
 
   if (options.breadcrumbsClick) {
     hantryReact.captureClickEvent();
@@ -11,6 +10,10 @@ export const init = (dsn, options) => {
 
   if (options.breadcrumbsURL) {
     hantryReact.captureUriChange();
+  }
+
+  if (options.rejection) {
+    hantryReact.captureRejectionException();
   }
 
   if (options.profiler) {

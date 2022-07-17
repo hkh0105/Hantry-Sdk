@@ -10,6 +10,37 @@ export class HantryReact extends Hantry {
     this.breadcrumbsURL = [];
   }
 
+  cachingOfflineErrorToStorage(error) {
+    if (window.localStorage.getItem("error")) {
+      const savedItems = JSON.parse(window.localStorage.getItem("error"));
+
+      savedItems.length > 30
+        ? window.localStorage.setItem("error", savedItems)
+        : window.localStorage.setItem("error", savedItems.push(error));
+    }
+
+    if (!window.localStorage.getItem("error")) {
+      const errorList = [];
+      errorList.push(error);
+      window.localStorage.setItem("error", errorList);
+    }
+  }
+
+  captureOfflineEvent(event) {
+    if (window && window.navigator && !window.navigator.onLine) {
+      cachingOfflineErrorToStorage(error);
+    }
+
+    if (window && window.navigator && window.navigator.onLine) {
+      const savedItems = JSON.parse(window.localStorage.getItem("error"));
+      window.localStorage.removeItem("error");
+      savedItems.map(error => {
+        this.sendError(error, this.dsn);
+        ss;
+      });
+    }
+  }
+
   captureClickEvent() {
     window.addEventListener(
       "click",
@@ -74,12 +105,15 @@ export class HantryReact extends Hantry {
 
       this.breadcrumbsClick = [];
       this.breadcrumbsURL = [];
+
       return await this.sendError(newError, this.dsn);
     }, 1000);
   }
 
   captureRejectionException() {
     window.onunhandledrejection = async event => {
+      console.log(event);
+      console.log(event.reason);
       const stack = getErrorStack(event.reason);
       const user = getUserInfo(window.navigator.userAgent);
       const newError = {
@@ -114,16 +148,7 @@ export class HantryReact extends Hantry {
     });
 
     observer.observe({
-      entryTypes: [
-        "first-input",
-        "largest-contentful-paint",
-        "layout-shift",
-        "longtask",
-        "mark",
-        "measure",
-        "navigation",
-        "paint",
-      ],
+      entryTypes: ["first-input"],
     });
   }
 

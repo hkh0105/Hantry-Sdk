@@ -1,4 +1,4 @@
-export function debounce(callback, limit = 100) {
+export function debounce(callback, limit = 1000) {
   let timeout;
 
   return function (...args) {
