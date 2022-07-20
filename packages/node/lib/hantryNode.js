@@ -1,7 +1,7 @@
-import { Hantry } from "hantry-js-core";
-import { getErrorStack } from "hantry-js-utils";
+const { Hantry } = require("hantry-js-core");
+const { getErrorStack } = require("hantry-js-utils");
 
-export class HantryNode extends Hantry {
+class HantryNode extends Hantry {
   constructor(dsn, options) {
     super(dsn, options);
     this.platform = "node";
@@ -47,3 +47,5 @@ export class HantryNode extends Hantry {
     });
   }
 }
+
+module.exports = { HantryNode }

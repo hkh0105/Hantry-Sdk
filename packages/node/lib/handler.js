@@ -1,7 +1,6 @@
-import * as http from "http";
-import { getErrorStack } from "hantry-js-utils";
+const { getErrorStack } = require("hantry-js-utils");
 
-export const errorHandler = (error, req, res, next) => {
+const errorHandler = (error, req, res, next) => {
   return function errorMiddleware(error, req, res, next) {
     const stack = getErrorStack(error);
     const newError = {
@@ -19,3 +18,5 @@ export const errorHandler = (error, req, res, next) => {
     next(newError);
   };
 };
+
+module.exports = { errorHandler };
