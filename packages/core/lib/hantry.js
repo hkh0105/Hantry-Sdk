@@ -24,7 +24,7 @@ export class Hantry {
   }
 
   async sendError(error, dsn) {
-    const API = "http://localhost:8000/users";
+    const API = "https://hantry.click/users";
 
     try {
       const postErrorResoponse = await axios.post(

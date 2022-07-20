@@ -22,13 +22,13 @@ class HantryNode extends Hantry {
         createdAt: Date.now(),
       };
 
-      return await this.sendError(newError, this.dsn);
+      return this.sendError(newError, this.dsn);
     });
     return;
   }
 
   captureRejectionException() {
-    process.on('unhandledRejection', (reason, promise) => {
+    process.on("unhandledRejection", (reason, promise) => {
       const stack = getErrorStack(reason.reason);
       const newError = {
         type: "Rejection Error",
@@ -43,9 +43,9 @@ class HantryNode extends Hantry {
         createdAt: Date.now(),
       };
 
-      return await this.sendError(newError, this.dsn);
+      return this.sendError(newError, this.dsn);
     });
   }
 }
 
-module.exports = { HantryNode }
+module.exports = { HantryNode };

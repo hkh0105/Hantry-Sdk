@@ -32,7 +32,7 @@ export class Profiler {
   }
 
   async sendPerformance(entryType, parsedEntry, dsn) {
-    const API = "http://localhost:8000/users";
+    const API = "https://hantry.click/users";
     console.log("gogo");
 
     try {

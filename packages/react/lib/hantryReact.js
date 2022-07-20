@@ -151,7 +151,7 @@ export class HantryReact extends Hantry {
   }
 
   async sendPerformance(entryType, parsedEntry, dsn) {
-    const API = "http://localhost:8000/users";
+    const API = "https://hantry.click/users";
 
     try {
       const postPerformanceResoponse = await axios.post(
