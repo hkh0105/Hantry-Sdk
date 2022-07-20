@@ -1,6 +1,6 @@
 {
   "name": "hantry-js-core",
-  "version": "0.1.39",
+  "version": "0.1.40",
   "description": "Core for Hantry",
   "author": "hkh9601 <hkh9601@gmail.com>",
   "homepage": "https://github.com/hkh0105/Hantry-Sdk#readme",
@@ -24,7 +24,7 @@
     "url": "https://github.com/hkh0105/Hantry-Sdk/issues"
   },
   "dependencies": {
-    "hantry-js-utils": "^0.1.39"
+    "hantry-js-utils": "^0.1.40"
   },
   "gitHead": "68b70314d44eb411b07067349fbb3bb046d9963b"
 }
