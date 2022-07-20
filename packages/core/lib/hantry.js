@@ -7,11 +7,20 @@ export class Hantry {
   }
 
   captureError(error) {
+    const stack = error.stack;
+    const user = error.user;
+    const newError = {
+      type: error.name,
+      message: error.message,
+      location: {
+        lineno: error.lineNumber,
+        colno: error.columnNumber,
+      },
+      stack,
+      createdAt: Date.now(),
+      user,
+    };
     return console.log(error);
-  }
-
-  captureMessage(message) {
-    return console.log(message);
   }
 
   async sendError(error, dsn) {

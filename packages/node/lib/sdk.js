@@ -1,7 +1,9 @@
-import { HantryNode } from "./hantryNode";
+const { HantryNode } = require("./hantryNode");
 
-export const init = (dsn, options) => {
+const init = (dsn, options) => {
   const hantryNode = new HantryNode(dsn, options);
   hantryNode.captureUncaughtException();
   hantryNode.captureRejectionException();
 };
+
+module.exports = { init };

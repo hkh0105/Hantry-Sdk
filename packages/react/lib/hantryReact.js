@@ -112,19 +112,17 @@ export class HantryReact extends Hantry {
 
   captureRejectionException() {
     window.onunhandledrejection = async event => {
-      console.log(event);
-      console.log(event.reason);
-      const stack = getErrorStack(event.reason);
+      const stack = getErrorStack(event);
       const user = getUserInfo(window.navigator.userAgent);
       const newError = {
         type: "Rejection Error",
-        message: event.reason,
+        message: event.reason.message,
         source: "",
         location: {
-          lineno: 1,
-          colno: 1,
+          lineno: stack[0].lineno,
+          colno: stack[0].colno,
         },
-        stack: [],
+        stack: stack,
         user,
         breadcrumbsClick: this.breadcrumbsClick,
         breadcrumbsURL: this.breadcrumbsURL,
