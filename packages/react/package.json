@@ -7,7 +7,6 @@
   "license": "ISC",
   "main": "dist/index",
   "files": [
-    "dist",
     "lib"
   ],
   "repository": {
