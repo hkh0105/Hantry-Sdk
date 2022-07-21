@@ -3,7 +3,7 @@ const { node } = require("prop-types");
 const webpack = require("webpack");
 
 module.exports = {
-  target: node,
+  target: "node",
   mode: "production",
   resolve: {
     modules: ["node_modules"],
