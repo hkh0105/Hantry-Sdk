@@ -5,7 +5,7 @@
   "author": "hkh9601 <hkh9601@gmail.com>",
   "homepage": "https://github.com/hkh0105/Hantry-Sdk#readme",
   "license": "ISC",
-  "main": "lib/node.js",
+  "main": "dist/index",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -18,10 +18,15 @@
     "url": "git+https://github.com/hkh0105/Hantry-Sdk.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "build": "webpack"
   },
   "bugs": {
     "url": "https://github.com/hkh0105/Hantry-Sdk/issues"
   },
-  "gitHead": "68b70314d44eb411b07067349fbb3bb046d9963b"
+  "gitHead": "68b70314d44eb411b07067349fbb3bb046d9963b",
+  "dependencies": {
+    "hantry-js-core": "^0.1.42",
+    "hantry-js-utils": "^0.1.40"
+  }
 }
