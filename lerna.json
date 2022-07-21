@@ -3,7 +3,7 @@
     "packages/*"
   ],
   "useNx": false,
-  "version": "0.1.50",
+  "version": "0.1.51",
   "npmClient": "npm",
   "publish": {
     "ignoreChanges": [
