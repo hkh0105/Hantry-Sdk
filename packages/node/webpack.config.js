@@ -1,7 +1,9 @@
 const path = require("path");
+const { node } = require("prop-types");
 const webpack = require("webpack");
 
 module.exports = {
+  target: node,
   mode: "production",
   resolve: {
     modules: ["node_modules"],

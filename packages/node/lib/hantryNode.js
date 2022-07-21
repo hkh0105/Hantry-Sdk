@@ -1,5 +1,4 @@
 const { Hantry } = require("hantry-js-core");
-const { getErrorStack } = require("hantry-js-utils");
 
 class HantryNode extends Hantry {
   constructor(dsn, options) {
@@ -9,7 +8,7 @@ class HantryNode extends Hantry {
 
   captureUncaughtException() {
     process.on("uncaughtException", error => {
-      const stack = getErrorStack(error);
+      const stack = error.stack.toString().split("\n");
       const newError = {
         type: error.name,
         message: error.message,
@@ -24,12 +23,12 @@ class HantryNode extends Hantry {
 
       return this.sendError(newError, this.dsn);
     });
-    return;
+    // return;
   }
 
   captureRejectionException() {
     process.on("unhandledRejection", (reason, promise) => {
-      const stack = getErrorStack(reason.reason);
+      const stack = error.stack.toString().split("\n");
       const newError = {
         type: "Rejection Error",
         message: reason,
