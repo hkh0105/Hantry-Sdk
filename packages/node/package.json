@@ -1,6 +1,6 @@
 {
   "name": "hantry-js-node",
-  "version": "0.1.52",
+  "version": "0.1.53",
   "description": "> TODO: description",
   "author": "hkh9601 <hkh9601@gmail.com>",
   "homepage": "https://github.com/hkh0105/Hantry-Sdk#readme",
@@ -23,6 +23,6 @@
   },
   "gitHead": "68b70314d44eb411b07067349fbb3bb046d9963b",
   "dependencies": {
-    "hantry-js-core": "^0.1.50"
+    "hantry-js-core": "^0.1.53"
   }
 }
