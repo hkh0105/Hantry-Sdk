@@ -23,7 +23,9 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "./dist"),
     filename: "index.js",
-    type: "umd",
-    umdNamedDefine: true,
+    library: {
+      name: "hantry-js-profiler",
+      type: "umd",
+    },
   },
 };

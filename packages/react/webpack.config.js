@@ -23,7 +23,9 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "./dist"),
     filename: "index.js",
-    libraryTarget: "umd",
-    umdNamedDefine: true,
+    library: {
+      name: "hantry-js-react",
+      type: "umd",
+    },
   },
 };
