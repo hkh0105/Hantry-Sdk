@@ -18,8 +18,7 @@
     "url": "git+https://github.com/hkh0105/Hantry-Sdk.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1",
-    "build": "webpack"
+    "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "bugs": {
     "url": "https://github.com/hkh0105/Hantry-Sdk/issues"
