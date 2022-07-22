@@ -23,7 +23,8 @@
   },
   "dependencies": {
     "hantry-js-core": "^0.1.55",
-    "hantry-js-utils": "^0.1.55"
+    "hantry-js-utils": "^0.1.55",
+    "lodash": "^4.17.21"
   },
   "gitHead": "68b70314d44eb411b07067349fbb3bb046d9963b"
 }

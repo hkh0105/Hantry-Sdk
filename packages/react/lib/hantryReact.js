@@ -1,10 +1,5 @@
 import { Hantry } from "hantry-js-core";
-import {
-  getUserInfo,
-  getErrorStack,
-  debounce,
-  throttle,
-} from "hantry-js-utils";
+import { getUserInfo, getErrorStack } from "hantry-js-utils";
 import {
   debouncedClickCb,
   debouncedUrlCb,
