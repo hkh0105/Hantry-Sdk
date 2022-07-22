@@ -17,11 +17,10 @@ export class HantryReact extends Hantry {
 
   cachingOfflineErrorToStorage(error) {
     if (window.localStorage.getItem("error")) {
-      const savedItems = JSON.parse(window.localStorage.getItem("error"));
-
-      savedItems.length > 30
-        ? window.localStorage.setItem("error", savedItems)
-        : window.localStorage.setItem("error", savedItems.push(error));
+      // const savedItems = JSON.parse(window.localStorage.getItem("error"));
+      // savedItems.length > 30
+      //   ? window.localStorage.setItem("error", savedItems)
+      //   : window.localStorage.setItem("error", savedItems.push(error));
     }
 
     if (!window.localStorage.getItem("error")) {
@@ -89,33 +88,29 @@ export class HantryReact extends Hantry {
   }
 
   captureUncaughtException() {
-    window.onerror = debounce(
-      async (message, source, lineno, colno, error) => {
-        const stack = getErrorStack(error);
-        const user = getUserInfo(window.navigator.userAgent);
-        const newError = {
-          type: error.name,
-          message,
-          source,
-          location: {
-            lineno: lineno,
-            colno: colno,
-          },
-          stack,
-          user,
-          breadcrumbsClick: this.breadcrumbsClick,
-          breadcrumbsURL: this.breadcrumbsURL,
-          createdAt: Date.now(),
-        };
+    window.onerror = debounce(async (message, source, lineno, colno, error) => {
+      const stack = getErrorStack(error);
+      const user = getUserInfo(window.navigator.userAgent);
+      const newError = {
+        type: error.name,
+        message,
+        source,
+        location: {
+          lineno: lineno,
+          colno: colno,
+        },
+        stack,
+        user,
+        breadcrumbsClick: this.breadcrumbsClick,
+        breadcrumbsURL: this.breadcrumbsURL,
+        createdAt: Date.now(),
+      };
 
-        this.breadcrumbsClick = [];
-        this.breadcrumbsURL = [];
+      this.breadcrumbsClick = [];
+      this.breadcrumbsURL = [];
 
-        return await this.sendError(newError, this.dsn);
-      },
-      1000,
-      { leading: true },
-    );
+      return await this.sendError(newError, this.dsn);
+    }, 1000);
   }
 
   captureRejectionException() {
