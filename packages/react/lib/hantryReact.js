@@ -112,7 +112,8 @@ export class HantryReact extends Hantry {
 
   captureRejectionException() {
     window.onunhandledrejection = async event => {
-      const stack = event.reason.message.split("at");
+      console.log(event.reason);
+      const stack = getErrorStack(event.stack);
       const user = getUserInfo(window.navigator.userAgent);
       const newError = {
         type: "Rejection Error",
