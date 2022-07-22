@@ -115,33 +115,38 @@ export class HantryReact extends Hantry {
         return await this.sendError(newError, this.dsn);
       },
       1000,
+      { leading: true },
     );
   }
 
   captureRejectionException() {
-    window.onunhandledrejection = _.debounce(async event => {
-      const stack = getErrorStack(event);
-      const user = getUserInfo(window.navigator.userAgent);
-      const newError = {
-        type: "Rejection Error",
-        message: event.reason.message,
-        source: "",
-        location: {
-          lineno: stack[0].lineno,
-          colno: stack[0].colno,
-        },
-        stack: stack,
-        user,
-        breadcrumbsClick: this.breadcrumbsClick,
-        breadcrumbsURL: this.breadcrumbsURL,
-        createdAt: Date.now(),
-      };
+    window.onunhandledrejection = _.debounce(
+      async event => {
+        const stack = getErrorStack(event);
+        const user = getUserInfo(window.navigator.userAgent);
+        const newError = {
+          type: "Rejection Error",
+          message: event.reason.message,
+          source: "",
+          location: {
+            lineno: stack[0].lineno,
+            colno: stack[0].colno,
+          },
+          stack: stack,
+          user,
+          breadcrumbsClick: this.breadcrumbsClick,
+          breadcrumbsURL: this.breadcrumbsURL,
+          createdAt: Date.now(),
+        };
 
-      this.breadcrumbsClick = [];
-      this.breadcrumbsURL = [];
+        this.breadcrumbsClick = [];
+        this.breadcrumbsURL = [];
 
-      return await this.sendError(newError, this.dsn);
-    }, 1000);
+        return await this.sendError(newError, this.dsn);
+      },
+      1000,
+      { leading: true },
+    );
   }
 
   async sendPerformance(entryType, parsedEntry, dsn) {
