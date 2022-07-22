@@ -5,7 +5,12 @@ import {
   debounce,
   throttle,
 } from "hantry-js-utils";
-import { debouncedClickCb, debouncedUrlCb } from "./utils";
+import {
+  debouncedClickCb,
+  debouncedUrlCb,
+  debouncedErrorCapture,
+  debouncedRejectionErrorCapture,
+} from "./utils";
 import axios from "axios";
 
 export class HantryReact extends Hantry {
@@ -79,55 +84,11 @@ export class HantryReact extends Hantry {
   }
 
   captureUncaughtException() {
-    window.onerror = async (message, source, lineno, colno, error) => {
-      const stack = getErrorStack(error);
-      const user = getUserInfo(window.navigator.userAgent);
-      const newError = {
-        type: error.name,
-        message,
-        source,
-        location: {
-          lineno: lineno,
-          colno: colno,
-        },
-        stack,
-        user,
-        breadcrumbsClick: this.breadcrumbsClick,
-        breadcrumbsURL: this.breadcrumbsURL,
-        createdAt: Date.now(),
-      };
-
-      this.breadcrumbsClick = [];
-      this.breadcrumbsURL = [];
-
-      return await this.sendError(newError, this.dsn);
-    };
+    window.onerror = debouncedErrorCapture;
   }
 
   captureRejectionException() {
-    window.onunhandledrejection = throttle(async event => {
-      const stack = getErrorStack(event);
-      const user = getUserInfo(window.navigator.userAgent);
-      const newError = {
-        type: "Rejection Error",
-        message: event.reason.message,
-        source: "",
-        location: {
-          lineno: stack[0].lineno,
-          colno: stack[0].colno,
-        },
-        stack: stack,
-        user,
-        breadcrumbsClick: this.breadcrumbsClick,
-        breadcrumbsURL: this.breadcrumbsURL,
-        createdAt: Date.now(),
-      };
-
-      this.breadcrumbsClick = [];
-      this.breadcrumbsURL = [];
-
-      return await this.sendError(newError, this.dsn);
-    }, 1000);
+    window.onunhandledrejection = debouncedRejectionErrorCapture;
   }
 
   async sendPerformance(entryType, parsedEntry, dsn) {

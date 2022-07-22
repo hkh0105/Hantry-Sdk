@@ -13,3 +13,58 @@ export const urlChangeCb = event => {
 };
 
 export const debouncedUrlCb = debounce(urlChangeCb, 1000);
+
+export const onErrorCapture = async (message, source, lineno, colno, error) => {
+  const stack = getErrorStack(error);
+  const user = getUserInfo(window.navigator.userAgent);
+  const newError = {
+    type: error.name,
+    message,
+    source,
+    location: {
+      lineno: lineno,
+      colno: colno,
+    },
+    stack,
+    user,
+    breadcrumbsClick: this.breadcrumbsClick,
+    breadcrumbsURL: this.breadcrumbsURL,
+    createdAt: Date.now(),
+  };
+
+  this.breadcrumbsClick = [];
+  this.breadcrumbsURL = [];
+
+  return await this.sendError(newError, this.dsn);
+};
+
+export const debouncedErrorCapture = debounce(onErrorCapture, 1000);
+
+export const rejectionErrorCapture = async event => {
+  const stack = getErrorStack(event);
+  const user = getUserInfo(window.navigator.userAgent);
+  const newError = {
+    type: "Rejection Error",
+    message: event.reason.message,
+    source: "",
+    location: {
+      lineno: stack[0].lineno,
+      colno: stack[0].colno,
+    },
+    stack: stack,
+    user,
+    breadcrumbsClick: this.breadcrumbsClick,
+    breadcrumbsURL: this.breadcrumbsURL,
+    createdAt: Date.now(),
+  };
+
+  this.breadcrumbsClick = [];
+  this.breadcrumbsURL = [];
+
+  return await this.sendError(newError, this.dsn);
+};
+
+export const debouncedRejectionErrorCapture = debounce(
+  rejectionErrorCapture,
+  1000,
+);
