@@ -14,7 +14,7 @@ export const urlChangeCb = event => {
 
 export const debouncedUrlCb = debounce(urlChangeCb, 1000);
 
-export const onErrorCapture = async (message, source, lineno, colno, error) => {
+export const onErrorCapture = (message, source, lineno, colno, error) => {
   const stack = getErrorStack(error);
   const user = getUserInfo(window.navigator.userAgent);
   const newError = {
@@ -35,12 +35,12 @@ export const onErrorCapture = async (message, source, lineno, colno, error) => {
   this.breadcrumbsClick = [];
   this.breadcrumbsURL = [];
 
-  return await this.sendError(newError, this.dsn);
+  return this.sendError(newError, this.dsn);
 };
 
 export const debouncedErrorCapture = debounce(onErrorCapture, 1000);
 
-export const rejectionErrorCapture = async event => {
+export const rejectionErrorCapture = event => {
   const stack = getErrorStack(event);
   const user = getUserInfo(window.navigator.userAgent);
   const newError = {
@@ -61,7 +61,7 @@ export const rejectionErrorCapture = async event => {
   this.breadcrumbsClick = [];
   this.breadcrumbsURL = [];
 
-  return await this.sendError(newError, this.dsn);
+  return this.sendError(newError, this.dsn);
 };
 
 export const debouncedRejectionErrorCapture = debounce(
