@@ -5,6 +5,7 @@ import {
   debounce,
   throttle,
 } from "hantry-js-utils";
+import { debouncedClickCb, debouncedUrlCb } from "./utils";
 import axios from "axios";
 
 export class HantryReact extends Hantry {
@@ -41,19 +42,12 @@ export class HantryReact extends Hantry {
       window.localStorage.removeItem("error");
       savedItems.map(error => {
         this.sendError(error, this.dsn);
-        ss;
       });
     }
   }
 
   captureClickEvent() {
-    window.addEventListener(
-      "click",
-      throttle(event => {
-        event.preventDefault();
-        this.breadcrumbsClick.push(event.target.outerHTML);
-      }, 1000),
-    );
+    window.addEventListener("click", debouncedClickCb);
   }
 
   captureUriChange() {
@@ -81,16 +75,11 @@ export class HantryReact extends Hantry {
       window.dispatchEvent(new Event("locationchange"));
     });
 
-    window.addEventListener(
-      "locationchange",
-      throttle(() => {
-        this.breadcrumbsURL.push(window.location.href);
-      }, 1000),
-    );
+    window.addEventListener("locationchange", debouncedUrlCb);
   }
 
   captureUncaughtException() {
-    window.onerror = throttle(async (message, source, lineno, colno, error) => {
+    window.onerror = async (message, source, lineno, colno, error) => {
       const stack = getErrorStack(error);
       const user = getUserInfo(window.navigator.userAgent);
       const newError = {
@@ -112,7 +101,7 @@ export class HantryReact extends Hantry {
       this.breadcrumbsURL = [];
 
       return await this.sendError(newError, this.dsn);
-    }, 1000);
+    };
   }
 
   captureRejectionException() {
