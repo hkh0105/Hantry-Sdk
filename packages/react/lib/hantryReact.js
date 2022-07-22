@@ -5,7 +5,6 @@ import {
   debounce,
   throttle,
 } from "hantry-js-utils";
-import _ from "lodash";
 import axios from "axios";
 
 export class HantryReact extends Hantry {
@@ -49,7 +48,7 @@ export class HantryReact extends Hantry {
   captureClickEvent() {
     window.addEventListener(
       "click",
-      _.debounce(event => {
+      debounce(event => {
         event.preventDefault();
         this.breadcrumbsClick.push(event.target.outerHTML);
       }, 1000),
@@ -83,14 +82,14 @@ export class HantryReact extends Hantry {
 
     window.addEventListener(
       "locationchange",
-      _.debounce(() => {
+      debounce(() => {
         this.breadcrumbsURL.push(window.location.href);
       }, 1000),
     );
   }
 
   captureUncaughtException() {
-    window.onerror = _.debounce(
+    window.onerror = debounce(
       async (message, source, lineno, colno, error) => {
         const stack = getErrorStack(error);
         const user = getUserInfo(window.navigator.userAgent);
@@ -120,7 +119,7 @@ export class HantryReact extends Hantry {
   }
 
   captureRejectionException() {
-    window.onunhandledrejection = _.debounce(
+    window.onunhandledrejection = debounce(
       async event => {
         const stack = getErrorStack(event);
         const user = getUserInfo(window.navigator.userAgent);

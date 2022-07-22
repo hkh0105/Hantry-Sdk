@@ -1,22 +1,21 @@
 import { debounce } from "hantry-js-utils";
 import { getUserInfo, getErrorStack } from "hantry-js-utils";
-import _ from "lodash";
 
 export const clickEvnetCb = event => {
   event.preventDefault();
   this.breadcrumbsClick.push(event.target.outerHTML);
 };
 
-export const debouncedClickCb = _.debounce(clickEvnetCb, 1000);
+export const debouncedClickCb = debounce(clickEvnetCb, 1000);
 
 export const urlChangeCb = event => {
   event.preventDefault();
   this.breadcrumbsURL.push(window.location.href);
 };
 
-export const debouncedUrlCb = _.debounce(urlChangeCb, 1000);
+export const debouncedUrlCb = debounce(urlChangeCb, 1000);
 
-export const debouncedErrorCapture = _.debounce(
+export const debouncedErrorCapture = debounce(
   async (message, source, lineno, colno, error) => {
     const stack = getErrorStack(error);
     const user = getUserInfo(window.navigator.userAgent);
@@ -44,7 +43,7 @@ export const debouncedErrorCapture = _.debounce(
   { leading: true },
 );
 
-export const debouncedRejectionErrorCapture = _.debounce(
+export const debouncedRejectionErrorCapture = debounce(
   async event => {
     const stack = getErrorStack(event);
     const user = getUserInfo(window.navigator.userAgent);
