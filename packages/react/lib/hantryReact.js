@@ -36,7 +36,6 @@ export class HantryReact extends Hantry {
       window.localStorage.removeItem("error");
       savedItems.map(error => {
         this.sendError(error, this.dsn);
-        ss;
       });
     }
   }
