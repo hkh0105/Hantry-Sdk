@@ -1,5 +1,10 @@
 import { Hantry } from "hantry-js-core";
-import { getUserInfo, getErrorStack, debounce } from "hantry-js-utils";
+import {
+  getUserInfo,
+  getErrorStack,
+  debounce,
+  throttle,
+} from "hantry-js-utils";
 import axios from "axios";
 
 export class HantryReact extends Hantry {
@@ -44,10 +49,10 @@ export class HantryReact extends Hantry {
   captureClickEvent() {
     window.addEventListener(
       "click",
-      debounce(event => {
+      throttle(event => {
         event.preventDefault();
         this.breadcrumbsClick.push(event.target.outerHTML);
-      }, 100),
+      }, 1000),
     );
   }
 
@@ -78,14 +83,14 @@ export class HantryReact extends Hantry {
 
     window.addEventListener(
       "locationchange",
-      debounce(() => {
+      throttle(() => {
         this.breadcrumbsURL.push(window.location.href);
       }, 1000),
     );
   }
 
   captureUncaughtException() {
-    window.onerror = debounce(async (message, source, lineno, colno, error) => {
+    window.onerror = throttle(async (message, source, lineno, colno, error) => {
       const stack = getErrorStack(error);
       const user = getUserInfo(window.navigator.userAgent);
       const newError = {
@@ -111,7 +116,7 @@ export class HantryReact extends Hantry {
   }
 
   captureRejectionException() {
-    window.onunhandledrejection = async event => {
+    window.onunhandledrejection = throttle(async event => {
       const stack = getErrorStack(event);
       const user = getUserInfo(window.navigator.userAgent);
       const newError = {
@@ -133,21 +138,7 @@ export class HantryReact extends Hantry {
       this.breadcrumbsURL = [];
 
       return await this.sendError(newError, this.dsn);
-    };
-  }
-
-  observerStart() {
-    const observer = new PerformanceObserver((list, obj) => {
-      list.getEntries().forEach(async entry => {
-        const parsedEntry = parseEntryType(entry);
-
-        await sendPerformance(entry.entryType, parsedEntry, this.dsn);
-      });
-    });
-
-    observer.observe({
-      entryTypes: ["first-input"],
-    });
+    }, 1000);
   }
 
   async sendPerformance(entryType, parsedEntry, dsn) {

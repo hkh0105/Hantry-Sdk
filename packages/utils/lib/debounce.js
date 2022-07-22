@@ -1,11 +1,9 @@
-export function debounce(callback, limit = 1000) {
-  let timeout;
-
-  return function (...args) {
-    clearTimeout(timeout);
-
-    timeout = setTimeout(() => {
-      callback.apply(this, args);
-    }, limit);
+export function debounce(fn, delay) {
+  let timer;
+  return function () {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      fn.apply(this);
+    }, delay);
   };
 }

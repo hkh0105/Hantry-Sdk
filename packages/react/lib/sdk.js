@@ -15,8 +15,4 @@ export const init = (dsn, options) => {
   if (options.rejection) {
     hantryReact.captureRejectionException();
   }
-
-  if (options.profiler) {
-    hantryReact.observerStart();
-  }
 };
