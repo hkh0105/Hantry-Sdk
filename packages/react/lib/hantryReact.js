@@ -1,6 +1,5 @@
 import { Hantry } from "hantry-js-core";
 import { getUserInfo, getErrorStack, debounce } from "hantry-js-utils";
-import axios from "axios";
 
 export class HantryReact extends Hantry {
   constructor(dsn, options) {
@@ -10,36 +9,36 @@ export class HantryReact extends Hantry {
     this.breadcrumbsURL = [];
   }
 
-  cachingOfflineErrorToStorage(error) {
-    if (window.localStorage.getItem("error")) {
-      const savedItems = JSON.parse(window.localStorage.getItem("error"));
+  // cachingOfflineErrorToStorage(error) {
+  //   if (window.localStorage.getItem("error")) {
+  //     const savedItems = JSON.parse(window.localStorage.getItem("error"));
 
-      savedItems.length > 30
-        ? window.localStorage.setItem("error", savedItems)
-        : window.localStorage.setItem("error", savedItems.push(error));
-    }
+  //     savedItems.length > 30
+  //       ? window.localStorage.setItem("error", savedItems)
+  //       : window.localStorage.setItem("error", savedItems.push(error));
+  //   }
 
-    if (!window.localStorage.getItem("error")) {
-      const errorList = [];
-      errorList.push(error);
-      window.localStorage.setItem("error", errorList);
-    }
-  }
+  //   if (!window.localStorage.getItem("error")) {
+  //     const errorList = [];
+  //     errorList.push(error);
+  //     window.localStorage.setItem("error", errorList);
+  //   }
+  // }
 
-  captureOfflineEvent(event) {
-    if (window && window.navigator && !window.navigator.onLine) {
-      cachingOfflineErrorToStorage(error);
-    }
+  // captureOfflineEvent(event) {
+  //   if (window && window.navigator && !window.navigator.onLine) {
+  //     cachingOfflineErrorToStorage(error);
+  //   }
 
-    if (window && window.navigator && window.navigator.onLine) {
-      const savedItems = JSON.parse(window.localStorage.getItem("error"));
-      window.localStorage.removeItem("error");
-      savedItems.map(error => {
-        this.sendError(error, this.dsn);
-        ss;
-      });
-    }
-  }
+  //   if (window && window.navigator && window.navigator.onLine) {
+  //     const savedItems = JSON.parse(window.localStorage.getItem("error"));
+  //     window.localStorage.removeItem("error");
+  //     savedItems.map(error => {
+  //       this.sendError(error, this.dsn);
+  //       ss;
+  //     });
+  //   }
+  // }
 
   captureClickEvent() {
     window.addEventListener(
@@ -153,15 +152,20 @@ export class HantryReact extends Hantry {
 
   async sendPerformance(entryType, parsedEntry, dsn) {
     const API = "https://hantry.click/users";
+    const url = `${API}/project/${dsn}/performance`;
+    const option = {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        parsedEntry: parsedEntry,
+        entryType: entryType,
+      }),
+    };
 
     try {
-      const postPerformanceResoponse = await axios.post(
-        `${API}/project/${dsn}/performance`,
-        {
-          parsedEntry,
-          entryType,
-        },
-      );
+      const postPerformanceResoponse = await fetch.post(url, option);
     } catch (err) {
       console.log(err);
     }

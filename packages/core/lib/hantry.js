@@ -1,5 +1,3 @@
-import axios from "axios";
-
 export class Hantry {
   constructor(dsn, options) {
     this.dsn = dsn;
@@ -25,13 +23,19 @@ export class Hantry {
 
   async sendError(error, dsn) {
     const API = "https://hantry.click/users";
+    const url = `${API}/project/${dsn}/error`;
+    const option = {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        error: error,
+      }),
+    };
 
     try {
-      const postErrorResoponse = await axios.post(
-        `${API}/project/${dsn}/error`,
-        error,
-      );
-      console.log(postErrorResoponse);
+      const postErrorResoponse = await fetch.post(url, option);
     } catch (err) {
       console.log(err);
     }
