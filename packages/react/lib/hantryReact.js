@@ -165,7 +165,7 @@ export class HantryReact extends Hantry {
     };
 
     try {
-      const postPerformanceResoponse = await fetch.post(url, option);
+      const postPerformanceResoponse = await fetch(url, option);
     } catch (err) {
       console.log(err);
     }

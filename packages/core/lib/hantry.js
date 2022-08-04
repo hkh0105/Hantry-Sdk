@@ -35,7 +35,7 @@ export class Hantry {
     };
 
     try {
-      const postErrorResoponse = await fetch.post(url, option);
+      const postErrorResoponse = await fetch(url, option);
     } catch (err) {
       console.log(err);
     }

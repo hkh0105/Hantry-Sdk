@@ -1,5 +1,4 @@
 import { parseEntryType } from "./utils";
-import axios from "axios";
 
 export class Profiler {
   constructor(dsn, options) {
@@ -33,16 +32,20 @@ export class Profiler {
 
   async sendPerformance(entryType, parsedEntry, dsn) {
     const API = "https://hantry.click/users";
-    console.log("gogo");
+    const url = `${API}/project/${dsn}/performance`;
+    const option = {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        parsedEntry: parsedEntry,
+        entryType: entryType,
+      }),
+    };
 
     try {
-      const postPerformanceResoponse = await axios.post(
-        `${API}/project/${dsn}/performance`,
-        {
-          parsedEntry,
-          entryType,
-        },
-      );
+      const postPerformanceResoponse = await fetch(url, option);
     } catch (err) {
       console.log(err);
     }
