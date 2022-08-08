@@ -75,6 +75,10 @@ export class HantryReact extends Hantry {
       window.dispatchEvent(new Event("locationchange"));
     });
 
+    window.addEventListener("hashchange", () => {
+      window.dispatchEvent(new Event("locationchange"));
+    });
+
     window.addEventListener(
       "locationchange",
       debounce(() => {
