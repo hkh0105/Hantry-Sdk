@@ -155,11 +155,10 @@ Settings 페이지에서는 Project Create 시 했던 정보들을 수정할 수
 ## 주요 기능
 
 - **UnhandledError**: NPM으로 배포한 라이브러리를 통해서 **unhandledError**, **RejectionError**, 에러가 발생한 **UserInfo(Browser,Os..etc)**, **Error Stack**, 등 에러에 관한 정보를 캐치할 수 있습니다. 에러가 발생한 순간의 정보들을 캐치 한후 서버로 보내게 했습니다.
-  여러 환경을 대응하기 위해 **오프라인 웹**도 대응하게 로직을 짜놨습니다.
   - **Breadcrumbs:** Error 의 Breadcrums 도 추적하게 했습니다. Click 과 URL에 대해서 추적하게 했습니다. URL 의 경우 hashchange event는 hash가 변경될때만 일어나고, popstate 의 경우 pushstate가 된 뒤, 앞으로가기 등의 경우 일어나고 다른경우 일어나지 않는 경우가 있었습니다.
     그래서 pushstate, relpaceevent를 커스텀하게 수정하고, 커스텀된 pushstate, replaceevent 와 기존의 popstate에서 새로운 url 변경이벤트를 보내게 만들어서 캐치했습니다.
 - **Visualize**: 사용자는 이를 Front의 배포된 사이트에서 그래프 및 디테일한 정보를 확인할 수 있습니다.
-  현제 **Vue, angular, react** 등의 모든 브라우저 **JS**와, **NodeJS** 버전을 지원하고, 전시회까지 NPM다운로드가 가능한 **파이썬** 까지 지원해볼 생각입니다.
+  현제 **Vue, angular, react** 등의 모든 브라우저 **JS**와, **NodeJS** 버전을 지원합니다.
 
 - **Compile Error** **WebPack PlugIn**: 런타임 환경에서 캐치할 수 없는 컴파일 환경의 에러는 **WebPack PlugIn**으로 캐치하게 했습니다. 이를 통해서 **compiler hook**의 **emit** 에서 접근할 수 있는 **compilation** 에서 에러를 찾아 이를 파싱한 후 서버로 보내게 해서 컴파일 에러를 캐치하게 했습니다.
 
@@ -174,4 +173,4 @@ Settings 페이지에서는 Project Create 시 했던 정보들을 수정할 수
 - **Slack Bot**: 마찬가지로, 서버에서 에러를 받았을 때, 에러말고도 Slack 으로도 알람을 받을 수 있게 했습니다.
   **Slack Bot**을 만든 후, Oauth 인증을 거쳐 배포시켰습니다. Setting에서 제공하는 버튼으로 **Hantry Slack bot**을 워크스페이스에 추가한 후 Slash 명령어를 통해 구독하면, **Slack Bot**이 에러가 발생했을 시 자동으로 메세지를 보내주게 했습니다. 지금은 백엔드 서버에 같이 존재하지만 추후 lamda 서버를 따로 팔 예정입니다.
 
-- **PerformanceObserver:** 웹 프로파일러를 제공하려고 했습니다. 라이브러리도 따로 배포했습니다. 사실 Sentry는 리액트의 경우 **Profiler Component**를 따로 지원 해주고 이를 이용할까 고민도 했습니다. 하지만 이 한기능을 위해서 리액트를 불러온다가 너무 과하게 느껴졌고 **PerformanceObserver 라는 기능을 사용하기로 했습니다.** 이를 통해 first Input, paint, long take, largest paint, navigate, layourshift 등등의 performance 요소 를 관측하고 기록해 서버로 보내게 했습니다.
+- **PerformanceObserver:** 웹 프로파일러를 제공하기위해 라이브러리도 따로 배포했습니다. 사실 Sentry는 리액트의 경우 **Profiler Component**를 따로 지원 해주고 이를 이용할까 고민도 했습니다. 하지만 이 한기능을 위해서 리액트를 의존하게 하는것이 너무 과하게 느껴졌고 **PerformanceObserver 라는 기능을 사용하기로 했습니다.** 이를 통해 first Input, paint, long take, largest paint, navigate, layourshift 등등의 performance 요소 를 관측하고 기록해 서버로 보내게 했습니다.
